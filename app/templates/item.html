@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8" />
+    <title>פרטי פריט</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header>
+      <h1>פריט: {{ item.name }}</h1>
+    </header>
+    <main>
+      <p><strong>מזהה:</strong> {{ item.id }}</p>
+      <nav>
+        <a href="{{ url_for('main.index') }}">← חזרה לרשימת פריטים</a>
+      </nav>
+      <hr />
+      <h2>ערוך שם פריט</h2>
+      <form action="{{ url_for('main.save') }}" method="post">
+        <input type="text" name="name" value="{{ item.name }}" placeholder="שם חדש לפריט" required />
+        <input type="hidden" name="id" value="{{ item.id }}" />
+        <button type="submit">עדכן</button>
+      </form>
+    </main>
+    <footer>
+      <p>© כל הזכויות שמורות</p>
+    </footer>
+  </body>
+</html>
