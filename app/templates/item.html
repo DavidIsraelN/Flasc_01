@@ -15,12 +15,15 @@
         <a href="{{ url_for('main.index') }}">← back to item list</a>
       </nav>
       <hr />
+
       <h2>edit name</h2>
-      <form action="{{ url_for('main.save') }}" method="post">
+      <form action="{{ url_for('main.update_item_route') }}" method="post">
+        <input type="hidden" name="_method" value="PUT">
         <input type="text" name="name" value="{{ item.name }}" placeholder="new name" required />
         <input type="hidden" name="id" value="{{ item.id }}" />
         <button type="submit">update</button>
       </form>
+
     </main>
     <footer>
       <p>© All rights reserved</p>
