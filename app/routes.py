@@ -21,7 +21,8 @@ def item_detail(item_id):
 
 @main_route.route('/save', methods=['POST'])
 def save():
-    # בדיקה האם זה עדכון או הוספה
+    # cheke if it is post to add or update item
+    # if item_id is not None, update the item, else add a new item
     try:
         item_id = request.form.get('id', type=int)
     except ValueError:
@@ -31,7 +32,6 @@ def save():
         flash('Name is required', 'error')
         return redirect(request.referrer)
 
-    # אם קיים id -> עדכון
     if item_id:
         success = update_item(item_id, name)
         if not success:
