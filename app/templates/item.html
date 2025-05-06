@@ -1,29 +1,55 @@
 <!DOCTYPE html>
-<html lang="he">
+
+<html lang="en">
+
   <head>
     <meta charset="UTF-8" />
-    <title>פרטי פריט</title>
+    <title>item details</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
+
   <body>
+
     <header>
-      <h1>פריט: {{ item.name }}</h1>
+      <h1>item: {{ item.name }}</h1>
     </header>
+
     <main>
-      <p><strong>מזהה:</strong> {{ item.id }}</p>
-      <nav>
-        <a href="{{ url_for('main.index') }}">← חזרה לרשימת פריטים</a>
-      </nav>
-      <hr />
-      <h2>ערוך שם פריט</h2>
-      <form action="{{ url_for('main.save') }}" method="post">
-        <input type="text" name="name" value="{{ item.name }}" placeholder="שם חדש לפריט" required />
+      
+      <p><strong>id of item:</strong> {{ item.id }}</p>
+
+      <form id="delete-item-form" data-method="DELETE" data-url="{{ url_for('main.delete_item_route') }}">
         <input type="hidden" name="id" value="{{ item.id }}" />
-        <button type="submit">עדכן</button>
+        <button type="submit">delete this item</button>
       </form>
+
+      <br />
+      <hr />
+
+      <nav>
+        <a href="{{ url_for('main.index') }}">← back to item list</a>
+      </nav>
+
+      <hr />
+
+      <h2>edit name</h2>
+        <form id="update-item-form" data-method="PUT" data-url="{{ url_for('main.update_item_route') }}">
+          <input type="text" name="name" value="{{ item.name }}" placeholder="new name" required />
+          <input type="hidden" name="id" value="{{ item.id }}" />
+          <button type="submit">update</button>
+        </form>
+
     </main>
+
     <footer>
-      <p>© כל הזכויות שמורות</p>
+      <p>© All rights reserved</p>
     </footer>
+
+    <script>
+      const indexURL = "{{ url_for('main.index') }}";
+    </script>
+    <script src="{{ url_for('static', filename='item_details.js') }}"></script>
+
   </body>
+
 </html>

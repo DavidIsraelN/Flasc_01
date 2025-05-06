@@ -15,5 +15,9 @@ def add_item(name):
 
 # update an existing item in the repository
 def update_item(idx, name):
-    success = items_repo.update(idx, {'name': name})
-    return success
+    return items_repo.update(idx, {'name': name})
+
+
+# delete an item from the repository
+def delete_item(idx):
+    return items_repo.delete(idx)

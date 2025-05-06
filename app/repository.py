@@ -31,6 +31,13 @@ class InMemoryRepo:
             if key != 'id':
                 item[key] = value
         return True
+    
+    def delete(self, idx):
+        item = self.get_by_id(idx)
+        if not item:
+            return False
+        self._data.remove(item)
+        return True
 
 
 items_repo = InMemoryRepo()
