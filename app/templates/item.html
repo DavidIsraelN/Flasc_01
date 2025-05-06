@@ -1,19 +1,36 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <title>item details</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
+
   <body>
+
     <header>
       <h1>item: {{ item.name }}</h1>
     </header>
+
     <main>
+      
       <p><strong>id of item:</strong> {{ item.id }}</p>
+
+      <form action="{{ url_for('main.delete_item_route')}}" method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="id" value="{{ item.id }}" />
+        <button type="submit">delete this item</button>
+      </form>
+      <br />
+
+      <hr />
+
       <nav>
         <a href="{{ url_for('main.index') }}">← back to item list</a>
       </nav>
+
       <hr />
 
       <h2>edit name</h2>
@@ -25,8 +42,11 @@
       </form>
 
     </main>
+
     <footer>
       <p>© All rights reserved</p>
     </footer>
+
   </body>
+
 </html>

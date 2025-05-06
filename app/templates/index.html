@@ -1,20 +1,31 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <title>item list</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
+
   <body>
     <h1>item list</h1>
+    
     <ul>
       {% for item in items %}
         <li><a href="{{ url_for('main.item_detail', item_id=item.id) }}">{{ item.name }}</a></li>
       {% endfor %}
     </ul>
+    
     <form action="{{ url_for('main.create_item') }}" method="post">
       <input name="name" placeholder="item name" required>
       <button type="submit">add item</button>
     </form>
+
   </body>
+
+  <footer>
+    <p>© All rights reserved</p>
+  </footer>
+
 </html>
