@@ -18,13 +18,12 @@
       
       <p><strong>id of item:</strong> {{ item.id }}</p>
 
-      <form action="{{ url_for('main.delete_item_route')}}" method="post">
-        <input type="hidden" name="_method" value="DELETE">
+      <form id="delete-item-form" data-method="DELETE" data-url="{{ url_for('main.delete_item_route') }}">
         <input type="hidden" name="id" value="{{ item.id }}" />
         <button type="submit">delete this item</button>
       </form>
-      <br />
 
+      <br />
       <hr />
 
       <nav>
@@ -34,18 +33,22 @@
       <hr />
 
       <h2>edit name</h2>
-      <form action="{{ url_for('main.update_item_route') }}" method="post">
-        <input type="hidden" name="_method" value="PUT">
-        <input type="text" name="name" value="{{ item.name }}" placeholder="new name" required />
-        <input type="hidden" name="id" value="{{ item.id }}" />
-        <button type="submit">update</button>
-      </form>
+        <form id="update-item-form" data-method="PUT" data-url="{{ url_for('main.update_item_route') }}">
+          <input type="text" name="name" value="{{ item.name }}" placeholder="new name" required />
+          <input type="hidden" name="id" value="{{ item.id }}" />
+          <button type="submit">update</button>
+        </form>
 
     </main>
 
     <footer>
       <p>© All rights reserved</p>
     </footer>
+
+    <script>
+      const indexURL = "{{ url_for('main.index') }}";
+    </script>
+    <script src="{{ url_for('static', filename='item_details.js') }}"></script>
 
   </body>
 
